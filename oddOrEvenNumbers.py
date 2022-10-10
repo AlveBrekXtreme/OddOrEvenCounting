@@ -42,8 +42,4 @@ while round == 0:
     else:
         print("You typed something wrong, try again")
     
-
-
-
-
 End = input("Press enter to stop the program: ")
