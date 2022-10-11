@@ -1,0 +1,6 @@
+This program is a game where you can count either odd or even numbers starting with 1 or 2 depending on what you choose. 
+You can download python and play it or use an online interpreter. Here are two online interpreters you can use:
+https://www.online-python.com/
+One inconvenience with online-python one is that the user input cannot be on the same line as text 
+https://www.programiz.com/python-programming/online-compiler/ 
+One issue with programiz is that it seems like the code stops running after some time
