@@ -1,87 +1,96 @@
 from timeit import default_timer as timer #imports a timer
-
-print("This program is a game where you will only count odd numbers or even numbers starting with 1 or 2 depending on what you choose.") #Introduction
-highscoreX = 0
-highscoreY = 0 
-scoreX = 0
-scoreY = 0
-name = input("Type your name/username/nickname/something, here: ") #the user can type in what they want to be called here
-while 0 == 0: #it will remain 0 unless the user choose to quit, meaning the user can play this as long as they want
-    #these are placed whithin the while loop so they reset after a round 
-    rounds = 0 
-    quitOrAgain = 0 
-    times = 0
+print("______________________________________________")
+print("| \n| This program is a game where you will only count odd numbers or even \
+numbers starting with 1 or 2 depending on what you choose.") #Introduction
+highscore_x = 0
+highscore_y = 0 
+#the user can type in what they want to be called here
+name = input("| Type your name/username/nickname/something, here: ") 
+while 0 == 0: #it will remain 0 unless the user choose to quit
+    #these variables resets after a iteration 
+    counting_user = 0
+    counter = 0 
     average = 0
-    countingEven = 0
-    countingOdd = -1
-    even = 0 
-    odd = -1 
-    oddOrEven = input("\nChoose between odd or even numbers. (odd/even): ") #the user chooses between odd or even numbers here
-    if oddOrEven == "even": #the code below runs if the user typed "even"
-        while even == countingEven: #this will loop as long as the user input is the same as "x" which is always two more then the previous round
+    rounds = 0 
+    times = 0
+    score = 0
+    print("|______________________________________________ \n\
+| \n| 1. Odd numbers. Start with the number 1")
+    print("| 2. Even numbers. Starts with the number 2")
+    #the user chooses between odd or even numbers 
+    odd_or_even = input("| Choose between odd or even numbers. (1/2): ") 
+    if odd_or_even == "2": #the code below runs if the user typed "2"
+        round_in_process = True
+        print("|______________________________________________ \n|")
+        while counter == counting_user: #this will loop as long as the user input is the same as "x" which is always two more then the previous round
             start = timer()
             try: #checks if the variable is an integer
-                countingEven = int(input(name+": ")) #here the user can input a number 
+                counting_user = int(input(f"| {name}: ")) #here the user can input a number 
             except: #if the variable isn't an integer, this message will be printed to the screen
-                print("You must type in a number") 
+                print("| You must type in a number") 
             else: #this will happend if the variable is an integer:
                 end = timer() 
                 time = end - start #calculates the time it takes between user inputs
                 time = round(time, 2) #makes it so this number only has 2 decimals
-                print(time, "seconds")
+                print(f"| {time} seconds")
                 times += time 
                 rounds += 1 #this counts how many rounds has been played
-                even += 2 
-        if even != countingEven: #lets the person know if they typed something wrong, this will also stop the loop because x is not equal to the number the user typed
-            print("\nWrong number. The next number was:", even) 
+                counter += 2 
+        if counter != counting_user: #lets the person know if they typed something wrong, this will also stop the loop because x is not equal to the number the user typed
+            print(f"|______________________________________________\n\
+| \n| Wrong number. The next number was: {counter}") 
             average = round(times/rounds, 2) #makes it so this number only has 2 decimals
-            print("Your average speed between numbers are:", average, "seconds") 
-            scoreX = even - 2 #the score is what number you got too
-            if highscoreX < scoreX: #if the score is higher then the highscore, the score will be set as the new highscore
-                highscoreX = scoreX 
-                print("Your new highscore for even numbers is:", highscoreX, "\n")
+            print(f"| Your average speed between numbers are: {average} seconds") 
+            score = counter - 2 #the score is what number you got too
+            if highscore_x < score: #if the score is higher then the highscore, the score will be set as the new highscore
+                highscore_x = score 
+                print(f"| Your new highscore for even numbers is: {highscore_x}\n\
+|______________________________________________")
             else:
-                print("Your highscore for even numbers is:", highscoreX, "\n") #lets the user see what the current highscore is if they didn't get a new highscore
-            quitOrAgain = input("Enter 1 to play again, enter 2 to quit: ") #lets the user choose if they want to play another round or quit
-            if quitOrAgain == "1":
-                print("You have choosen to play again") 
-            elif quitOrAgain == "2":
-                print("You have choosen to quit")
-                break #breaks out of the loop
-            else:
-                print("I don't understand what you are saying so I will just assume you said you wanted to play again")           
-    elif oddOrEven == "odd": #the code below runs if the user typed "odd"
-        while odd == countingOdd: #this loop does nearly the same as the while loop above, only differences is that it's for counting odd numbers and it uses some diffrent variables than the other loop
+                print(f"| Your highscore for even numbers is: {highscore_x}\n|\
+______________________________________________") #lets the user see what the current highscore is if they didn't get a new highscore         
+    elif odd_or_even == "1": #the code below runs if the user typed "1" and does nearly the same as the "if" above
+        round_in_process = True
+        counting_user -= 1 #because counter now is -1 at the, countingUser also has to start at -1 so the while condition is true
+        counter -= 1 #because it's odd numbers, the counter must be set to -1 so it becomes 1 instead of two first
+        print("|______________________________________________ \n|")
+        while counter == counting_user: 
             start = timer()
             try:
-                countingOdd = int(input(name+": "))
+                counting_user = int(input(f"| {name}: "))
             except:
-                print("You must type a number")
+                print("| You must type a number")
             else:
-                odd += 2
+                counter += 2
                 end = timer()
                 time = end - start
                 time = round(time, 2) 
-                print(time, "seconds")
+                print(f"| {time} seconds")
                 times += time 
                 rounds += 1
-        if odd != countingOdd:
-            print("\nWrong number. The next number was:", odd)
+        if counter != counting_user:
+            print(f"|______________________________________________\n\
+| \n| Wrong number. The next number was: {counter}")
             average = round(times/rounds, 2)
-            print("Your average speed between numbers are:", average, "seconds")
-            scoreY = odd - 2
-            if highscoreY < scoreY:
-                highscoreY = scoreY 
-                print("Your new highscore for odd numbers is:", highscoreY, "\n")
+            print(f"| Your average speed between numbers are: {average} seconds")
+            score = counter - 2
+            if highscore_y < score:
+                highscore_y = score 
+                print(f"| Your new highscore for odd numbers is: {highscore_y} \n\
+|______________________________________________")
             else:
-                print("Your highscore for odd numbers is:", highscoreY, "\n")
-        quitOrAgain = input("Enter 1 to play again, enter 2 to quit: ") 
-        if quitOrAgain == "1":
-            print("You have choosen to play again") 
-        elif quitOrAgain == "2":
-            print("You have choosen to quit")
-            break
+                print(f"| Your highscore for odd numbers is: {highscore_y}\n\
+|______________________________________________")
+    else:
+        print("| \n| You must type either the number 1 or 2")
+    if round_in_process == True:
+        round_in_process = False
+        quit_or_again = input("| \n| Enter 1 to play again, enter 2 to quit: ") #lets the user choose if they want to play another round or quit
+        if quit_or_again == "1":
+           print("| You have choosen to play again") 
+        elif quit_or_again == "2":
+            print("| You have choosen to quit")
+            break #breaks out of the loop
         else:
-            print("I don't understand what you are saying so I will just assume you said you wanted to play again")
-    else: #if the user typed neither odd, nor even, a message gets sent to the screen and the user can try again
-        print("You typed something wrong, try again")
+            print("| I don't understand what you are saying so I will just assume you said you wanted to play again")  
+    
